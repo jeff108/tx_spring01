@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+			        http://www.springframework.org/schema/beans
+			        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--给集合属性注入值-->
+    <bean id="collectionBean" class="cn.tx.demo3.CollectionBean">
+        <property name="strs">
+            <array>
+                <value>美美</value>
+                <value>小凤</value>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>熊大</value>
+                <value>熊二</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="aaa" value="老王"/>
+                <entry key="bbb" value="小王"/>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="username">root</prop>
+                <prop key="password">123456</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

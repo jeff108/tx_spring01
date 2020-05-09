@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+			        http://www.springframework.org/schema/beans
+			        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        把UserServiceImpl类交给IOC容器进行管理，对象由IOC容器来创建。bean管理 组件管理
+            id="对象在IOC容器中唯一的名称，要求编写的时候是唯一的"
+            class="管理的类的全路径（包名+类名），通过Java反射技术创建实例对象"
+            scope="创建后对象的生命周期（作用范围）"
+                singleton   默认值，单例的。IOC容器中只会存在一个实例的。配置文件一被加载，实例对象就会被创建。
+                            生命周期和容器生命周期。
+                prototype   多例的。每从IOC容器中获取对象，才会创建实例对象。销毁工作不由容器负责。
+                request     多例的。
+                session     多例的。
+            init-method     初始化方法
+            destroy-method  销毁方法
+
+    <bean id="us" class="cn.tx.service.UserServiceImpl" scope="singleton" init-method="init" destroy-method="destory"/>
+    -->
+
+    <!--实例化bean的三种方式-->
+    <!--1. 默认五参数构造方法方式-->
+    <bean id="us" class="cn.tx.service.UserServiceImpl" />
+
+
+    <!--2. 静态工厂方式
+    <bean id="us" class="cn.tx.demo1.StaticFactory" factory-method="createUs" />
+    -->
+
+    <!--实例化工厂的方式
+    <bean id="dfactory" class="cn.tx.demo1.Dfactory" />
+    <bean id="us" factory-bean="dfactory" factory-method="createUs" />
+    -->
+
+    <!--DI：依赖注入
+    <bean id="os" class="cn.tx.service.OrderServiceImpl">
+        <property name="orderDao" ref="od" />
+        <property name="msg" value="你好" />
+        <property name="age" value="30" />
+    </bean>
+    <bean id="od" class="cn.tx.dao.OrderDaoImpl"></bean>
+    -->
+
+    <!--属性的构造方法的方式
+    <bean id="car" class="cn.tx.demo2.Car">
+        <constructor-arg name="cname" value="大奔" />
+        <constructor-arg name="money" value="400000" />
+    </bean>
+    -->
+
+    <!--给集合属性注入值
+    <bean id="collectionBean" class="cn.tx.demo3.CollectionBean">
+        <property name="strs">
+            <array>
+                <value>美美</value>
+                <value>小凤</value>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>熊大</value>
+                <value>熊二</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="aaa" value="老王"/>
+                <entry key="bbb" value="小王"/>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="username">root</prop>
+                <prop key="password">123456</prop>
+            </props>
+        </property>
+    </bean>
+    -->
+
+    <!--引入其他的配置文件-->
+    <import resource="applicationContext_list.xml" />
+
+</beans>
